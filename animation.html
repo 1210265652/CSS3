@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义动画</title>
+</head>
+<style>
+    @keyframes move {
+        0%{
+            transform: translate(0,0);
+        }
+        100%{
+            transform: translate(500px,0);
+        }
+    }
+    .box{
+        width:200px;height:200px;background: paleturquoise;
+        animation:move linear 3s alternate 1s paused;
+        border:5px solid #ccc;
+    /*animation-name: move;
+    animation-play-state: paused;
+    animation-duration: 3s;
+    animation-fill-mode:forwards;
+    animation-delay: 1s;
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    /*animation-iteration-cot:5 ;
+    animation-direction: alternate;*/
+}
+</style>
+<script>
+    window.onload=function(){
+        var box=document.getElementsByClassName("box")[0];
+        box.onclick=function(){
+            box.style.animationPlayState="running";
+        }
+    }
+</script>
+<body>
+<div class="box">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿
+
+三种形变：平移，缩放，旋转
+
+平移：transform:translate（x，y） 单位
+
+transform:translateX(10px) translateY(10px);
+
+缩放：transform:scale(2,1)  x轴放大两倍y不变
+
+旋转：transform:rotate(50deg)
+
+斜切：transform:skew(10deg,10deg)  red弧度 deg角度
+
+transform-origin:left top; 以左上角为变换基准点	单位矩阵
+
+矩阵：matrix(a,b,c,d,ex轴,fy轴)   齐次矩阵
+
+abcd缩放  ef平移
+
+console.log(Math.sin(30*Math.PI/180));
+
+transform:rotate3d(1,1,1,50deg);
+
+单位向量  x的平方+y的平方+z的平方 ，开平方等于模的值1
+
+x轴的向量=x*模；
+
+球坐标系
+
+天顶角  经度   方位角  纬度
+
+弧长等于半径  就是一个弧度 
+
+角度*math。pi/180  转换成弧度
+
+transform：rotate3d（x,y,z,50deg）xyz 单位向量  转动的中心轴
+
+transition  过渡  
+
+1. 在css3之前，浏览器所有的动画都是及时完成的，节省计算机资源。animate({属性：最终值},500,ease,function(){动画完成以后...})
+
+2. 在css3多了一个变换的选择，过渡，默认还是及时完成。添加过渡特性，transition。
+
+3. 如果想让一个元素应用过渡特性，第一步，要给该元素添加transition属性，第二步，要给transition至少添加两个属性，一个叫属
+
+性的名字transition-property：width,height,background；，一个是过渡的持续时间transition-duration：2s,1s,5s；同时它还有两
+
+个属性：指定动画方式的属性：linear ease ease-in ease-out 最牛逼的贝塞尔曲线transition-timing-function:cubic-bezier();还有一个指定过渡等待
+
+的时间：transition-delay:2s;
+
+4. 简写  transition:width 2s ease 0s, height 1s linear 1s;
+
+5. 通过webkitTransitionEnd 事件，监听过渡完成的时间
+
+虚化：filter:blur(1px)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

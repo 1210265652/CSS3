@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @keyframes turn {
+        0%{transform: rotateX(0deg)}
+        25%{transform: rotateX(180deg)}
+        50%{transform: rotateX(360deg) rotateY(0deg)}
+        75%{transform: rotateX(360deg) rotateY(180deg)}
+        100%{transform: rotateX(360deg) rotateY(360deg)}
+    }
+    .box{
+        width:300px;height:300px;margin:150px auto;
+        /*position:fixed;left:0;right:0;top:0;bottom:0;magin:auto;*/
+        perspective:1000px;/*场景搭建，透视*/
+    }
+    .plane{
+        width:100%;
+        height: 100%;
+        transform-style:preserve-3d;/*盒子  盒子的每个面都可以3d变换*/
+        transition: transform 2s;
+        transform-origin: center center 150px;
+        animation:turn 5s linear infinite;
+    }
+    /*.plane:hover{
+        transform: rotateZ(-180deg) rotateY(180deg);
+    }*/
+    .plane div{
+        width:100%;
+        height: 100%;
+        position: absolute;
+        text-align: center; line-height: 300px;
+        font-size: 50px;color:yellow;
+    }
+    .plane div:nth-child(1){
+        /*background-color: red;*/
+        border:1px solid red;
+        transform-origin: top;
+        transform:rotateX(90deg);
+    }
+    .plane div:nth-child(2){
+        transform-origin: left;
+        transform: rotateY(-90deg);
+        /*background-color: yellow;*/
+        border:1px solid red;
+    }
+    .plane div:nth-child(3){
+        /*background-color: deeppink;*/
+        border:1px solid red;
+    }
+    .plane div:nth-child(4){
+        transform-origin: bottom;
+        transform:rotateX(-90deg);
+        /*background-color: chocolate;*/
+        border:1px solid red;
+    }
+    .plane div:nth-child(5){
+        transform-origin: right;
+        transform:rotateY(90deg);
+        /*background-color: darkseagreen;*/
+        border:1px solid red;
+    }
+    .plane div:nth-child(6){
+        /*background-color: cadetblue;*/
+        border:1px solid red;
+        transform: translateZ(300px);
+    }
+</style>
+<script>
+    wi ndow.onload=function(){
+        var plane=document.getElementsByClassName("plane")[0];
+        var centerx=document.documentElement.clientWidth;
+        var centery=document.documentElement.clientHeight;
+        document.onmousedown=function(e){
+            var ex=e.clientX;
+            var ey=e.clientY;
+            document.onmousemove=function(e){
+                var movex=e.clientX;
+                var movey=e.clientY;
+                var x=movex-centerx;
+                var y=movey-centery;
+                var mo=Math.sqrt((x*x+y*y));
+                var mox=x*mo;
+                var moy=y*mo;
+                var angle=Math.sqrt((mox-ex)*(mox-ex)+(moy-ey)*(moy-ey));
+                plane.style.transform="rotate3d("+mox+","+moy+",0,"+angle+"deg)";
+            }
+            document.onmouseup=function(){
+                document.onmousemove=null;
+                document.onmouseup=null;
+            }
+        }
+    }
+</script>
+<body>
+<div class="box">
+    <div class="plane">
+        <div>卐</div>
+        <div>卐</div>
+        <div>卐</div>
+        <div>卐</div>
+        <div>卐</div>
+        <div>卐</div>
+    </div>
+</div>
+</body>
+</html>

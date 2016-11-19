@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+   .clock{
+        width:300px;height:300px;border:5px solid lightcoral;
+        position:absolute;margin:auto;left:0;right:0;top:180px;
+        border-radius: 50%;
+    }
+</style>
+<script>
+    window.onload=function(){
+        var clock=document.querySelector(".clock");//.clock
+        function creatMark() {
+            for(var i=0;i<60;i++){
+                var w,h;
+                if(i%5==0){
+                    w=4;h=8
+                }else {
+                    w=2;h=6
+                }
+                var div=document.createElement("div");
+                div.style.cssText="width:"+w+"px;height:"+h+"px;background:black;position:absolute;left:0;top:0";
+                div.style.transform="translate("+(300-w)/2+"px,0) rotate("+i*6+"deg)";
+                div.style.transformOrigin="center 150px";
+                clock.appendChild(div);
+            }
+        }
+        creatMark();
+        var time=new Date();
+        var hPointer= createPointer(5,50,"red",time.getHours()*30+time.getMinutes()*6/12);
+        var mPointer=createPointer(5,70,"yellow",time.getMinutes()*6);
+        var sPointer=createPointer(5,90,"green",time.getSeconds()*6);
+        setInterval(function(){
+            var time = new Date();
+            hPointer.style.transform = "translate("+(300-hPointer.w)/2+"px,"+(150-hPointer.h)+"px) rotate("+(time.getHours()*30+time.getMinutes()*6/12)+"deg)";
+            mPointer.style.transform = "translate("+(300-mPointer.w)/2+"px,"+(150-mPointer.h)+"px) rotate("+time.getMinutes()*6+"deg)";
+            sPointer.style.transform = "translate("+(300-sPointer.w)/2+"px,"+(150-sPointer.h)+"px) rotate("+time.getSeconds()*6+"deg)";
+        },1000);
+        function createPointer(w,h,c,deg){
+            var div=document.createElement("div");
+            div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;left:0;top:0";
+            div.style.transform="translate("+(300-w)/2+"px,"+(150-h)+"px) rotate("+deg+"deg) ";
+            div.style.transformOrigin="center bottom";
+            div.w = w;
+            div.h = h;
+            clock.appendChild(div);
+
+            return div;
+        }
+    }
+</script>
+<body>
+    <div class="clock">
+
+    </div>
+</body>
+</html>

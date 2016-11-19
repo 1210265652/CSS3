@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哆啦a梦</title>
+    <script src="room/js/room.js"></script>
+</head>
+<style>
+    @keyframes eyesmove {
+        0%{
+            transform: translate(0,0);
+        }
+        25%{
+            transform: translate(0,-30px);
+        }
+        50%{
+            transform: translate(0,0);
+        }
+        75%{
+            transform: translate(5px,0);
+        }
+        100%{
+            transform: translate(-5px,0);
+        }
+    }
+    body,html{
+        margin:0;padding:0;
+    }
+    .container{
+        width:500px;height:600px;
+        border:1px solid black;
+        position:absolute;left:0;top:0;bottom:0;right:0;
+        margin: auto;
+    }
+    .top{
+        width:320px;height:290px;
+        margin:0 auto;
+        position: relative;
+    }
+    .bottom{
+        width:390px;height:192px;
+        border:1px solid black;
+        margin:0 auto;
+        position: relative;
+    }
+    .header{
+        width:100%;height:288px;
+        border-radius:250px;
+        background: linear-gradient(50deg,#085063,#0CB2DC,#08BAE6,#82DEF4);
+        border:2px solid #333;
+        position: absolute;left:0;top:0;
+    }
+    .ring{
+        width:233px;height:23px;
+        background:linear-gradient(to right,#781600 10%,#B93300) ;
+        border:2px solid #333;
+        border-radius: 13px;z-index: 10;
+        position: absolute;left:0;bottom:0;right:0;margin:auto;
+    }
+    .eyesbox{
+        width:156px;height:90px;
+        position: absolute;left:0;right:0;margin:auto;
+        z-index: 2;
+    }
+    .eyes{
+        width:75px;height:87px;
+        border:2px solid black;border-radius: 37px;
+        float: left;background: white;
+        margin:40px auto 0;position: relative;
+
+    }
+    .eyes:nth-child(2){
+        margin-left: -2px;
+    }
+    .innerEye{
+        width:15px;height:15px;
+        background-color: #343434;border-radius: 50%;
+        position: absolute;right:10px;bottom:20px;
+    }
+    .eyes:nth-child(2) .innerEye{
+        position: absolute;left:10px;bottom:20px;
+    }
+    .face{
+        width:260px;height:185px;
+        border:2px solid black;border-radius: 125px;
+        background: white;
+        margin:85px auto 0;
+        position: relative;
+    }
+    .nose{
+        width:34px;height:34px;border:2px solid black;
+        border-radius: 50%;
+        background: radial-gradient(circle 9px at 26px 12px ,#fff,#C53E00);
+        position: absolute;left:0;right:0;margin:0 auto;top:28px;
+        z-index: 1;
+    }
+    .line{
+        width:3px;height:97px;background-color: #333;
+        position: absolute;left:0;right:0;margin:0 auto;top:62px;
+    }
+    .beardbox{
+        width: 100%;height:100%;
+        position: absolute;left:0px;right:0;top:0px;
+    }
+    .beard{
+        width:60px;height:2px;position: absolute;
+        background: #333;
+    }
+    .beard:nth-child(1){
+        position: absolute; left: 30px;top:60px;
+        transform: rotate(25deg);
+    }
+    .beard:nth-child(2){
+        position: absolute; left: 30px;top:80px;
+    }
+    .beard:nth-child(3){
+        position: absolute; left: 30px;top:100px;
+        transform: rotate(-25deg);
+    }
+    .beard:nth-child(4){
+        position: absolute; right: 30px;top:60px;
+        transform: rotate(-25deg);
+    }
+    .beard:nth-child(5){
+        position: absolute; right: 30px;top:80px;
+    }
+    .beard:nth-child(6){
+        position: absolute; right: 30px;top:100px;
+        transform: rotate(25deg);
+    }
+    .mouth{
+        width:110px;height:110px;border:2px solid #333;
+        transform: rotate(-45deg);
+        border-radius: 0 0 0 110px;
+        border-top:none;
+        border-right:none;
+        position: absolute;left:0;right:0;margin:0 auto;bottom:18px;
+    }
+    .bell{
+        width: 42px;height:42px;
+        border:2px solid black;border-radius: 50%;
+        position: absolute;left:0;right:0;bottom:-30px;margin:auto;
+        overflow: hidden;z-index: 22;
+        background: radial-gradient(circle 8px at 30px 10px,#fff,#DBD90B);
+    }
+    .bellt{
+        width:50px;height:2px;background-color: #000;
+        margin:9px auto 2px;
+    }
+    .bellt:nth-child(2){
+        margin:0;
+    }
+    .bellc{
+        width:12px;height:10px;border-radius: 50%;
+        background-color: #000;
+        position: absolute;left:0;right:0;bottom:10px;margin:0 auto;
+    }
+    .bellb{
+        width:2px;height:15px;background: #000;
+        position: absolute;left:0;right:0;bottom:0;margin:0 auto;
+    }
+    .body{
+        width:225px;height:160px;z-index: 10;
+        background:linear-gradient(210deg,#05BFE6,#0088AC);
+        position: absolute;left:0;right:0;margin:0 auto;overflow: hidden;
+    }
+    .leg{
+        width:220px;height:110px;
+        border:2px solid #223134;
+        position: absolute;bottom:0;
+        border-top:0;
+    }
+    .cir{
+        border:2px solid #000;
+        width:25px;height: 25px;border-radius: 50%;
+        position: absolute;left:0;right:0;margin:0 auto;bottom:-12px;
+        background: linear-gradient(210deg,#A8A4A5 2%,#fff);
+    }
+    .du{
+        width:175px;height:175px;
+        position: absolute;left:0;right:0;margin:0 auto;top:-60px;
+        background:#fff;border-radius: 50%;
+        border:2px solid #000;
+    }
+    .bag{
+        width:130px;height:65px;
+        border-radius: 0 0 65px 65px;
+        border:2px solid black;
+        position: absolute;left:0;right:0;margin:0 auto;bottom:10px;
+    }
+    .arm{
+        width:45px;height:80px;border:2px solid black;
+        transform: rotate(45deg);background: #03A5CA;
+        position: absolute;
+        left:55px;top:-6px;
+    }
+    .armcir{
+        width:60px;height:60px;border:2px solid black;
+        background: #fff;border-radius: 50%;
+        position: absolute;
+        bottom:-50px;left:-12px;
+    }
+    .arm:nth-child(2){
+        position: absolute;
+        right:-55px;top:-6px;
+    }
+</style>
+<body>
+<div class="box">
+    <img src="mao.jpg" alt="">
+</div>
+<div class="container">
+    <div class="top">
+        <div class="header">
+            <div class="eyesbox">
+                <div class="eyes">
+                    <div class="innerEye"></div>
+                </div>
+                <div class="eyes">
+                    <div class="innerEye"></div>
+                </div>
+            </div>
+            <div class="face">
+                <div class="nose"></div>
+                <div class="line"></div>
+                <div class="beardbox">
+                    <div class="beard"></div>
+                    <div class="beard"></div>
+                    <div class="beard"></div>
+                    <div class="beard"></div>
+                    <div class="beard"></div>
+                    <div class="beard"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ring"></div>
+        <div class="mouth"></div>
+        <div class="bell">
+            <div class="bellt"></div>
+            <div class="bellt"></div>
+            <div class="bellc"></div>
+            <div class="bellb"></div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="body">
+            <div class="leg"></div>
+            <div class="cir"></div>
+            <div class="du">
+                <div class="bag"></div>
+            </div>
+        </div>
+        <div class="arm">
+            <div class="armcir"></div>
+        </div>
+        <div class="arm">
+            <div class="armcir"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    window.onload=function () {
+        var eyes=document.querySelectorAll(".innerEye");
+        for(var i=0;i<eyes.length;i++){
+            eyes[i].style.animation="eyesmove 4s ease 3s infinite";
+        }
+    }
+</script>
+</html>

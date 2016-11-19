@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-size: 20px;text-align: center;
+        }
+        .box{
+            width:300px;height:300px;background-color: hotpink;
+            margin:150px auto;
+        }
+        .box:hover{
+            /*transform: translate(100px,0);*/
+            /*transform: scale(2,2);*/
+            /*transform: rotate(30deg);*/
+            /*transform: skew(30deg);*/
+            /*transform: matrix(a,b,c,d,e,f);*/
+            transform: matrix(0.8660254037844387,0.49999999999999994,-0.49999999999999994,0.8660254037844387,0,0);
+            /*transform-origin: left bottom;*/
+        }
+    </style>
+    <script>
+        console.log(Math.cos(30*Math.PI/180));
+    </script>
+</head>
+<body>
+<div class="box">
+    2D转换:平移 translate，缩放scale，旋转rotate,斜切skew
+    transform-origin是转换基点 2D转换中的矩阵matrix可以实现上面的每一个效果，齐次矩阵
+</div>
+</body>
+<html>

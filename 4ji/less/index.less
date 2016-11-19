@@ -1,0 +1,19 @@
+
+@keyframes  mymove {
+  .loop()
+}
+.loop(@n:0,@deg:0.9) when (@n<=100) {
+   @s:@n*1%;
+  .one();
+  .one() when(@n<50){
+    @{s}{
+    transform:rotateY(@n*0.9deg) scale(1-10/100/10*@n,1-10/100/10*@n);
+    }
+  }
+  .one() when(@n>50){
+    @{s}{
+      transform:rotateY(@n*0.9deg) scale(10/100/10*@n,10/100/10*@n);
+    }
+  }
+  .loop(@n+1);
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<style>
+    *{
+        margin:0;padding:0;
+    }
+    .container{
+        width:800px;height:400px;
+        position:fixed;left:0;right:0;top:0;bottom:0;margin:auto;
+        perspective:5000px;
+        perspective-origin:bottom;
+    }
+
+</style>
+<script>
+    window.onload=function(){
+        var container=document.querySelector(".container");
+        var heights=parseInt(getComputedStyle(container,null).height);
+        var widths=parseInt(getComputedStyle(container,null).width);
+        var num=10;
+        var arr=[];
+        //创建场景
+        for(var i=0;i<num;i++){
+            var scene=document.createElement("div");
+            scene.style.cssText="width:100%;height:"+(heights/num)+"px;position:absolute;left:0;top:"+(i*(heights/num))+"px;right:0;bottom:0;";
+        //创建盒子
+            var box=document.createElement("div");
+            box.style.cssText="width:100%;height:"+(heights/num)+"px;transform-style:preserve-3d;transform-origin:center center 400px;transition:transform 2s "+i*0.3+"s";
+            //创建每个盒子的六个面
+            for (var j=0;j<6;j++){
+                var panel=document.createElement("div");
+                panel.style.cssText="position:absolute;left:0;top:0";
+                if(j==0){
+                    panel.style.width="100%";
+                    panel.style.height=widths+"px";
+                    panel.style.transformOrigin="top";
+                    panel.style.transform="rotateX(-90deg)";
+                }else if(j==1){
+                    panel.style.width="100%";
+                    panel.style.height=heights/num+"px";
+                    panel.style.transformOrigin="left";
+                    panel.style.transform="rotateY(-90deg)";
+                    panel.style.background="url(img/2.jpg) no-repeat 0 "+-i*(heights/num)+"px";
+                }else if(j==2){
+                    panel.style.width="100%";
+                    panel.style.height=heights/num+"px";
+                    panel.style.transformOrigin="right";
+                    panel.style.transform="rotateY(90deg)";
+                    panel.style.background="url(img/4.jpg) no-repeat 0 "+-i*(heights/num)+"px";
+                }else if(j==3){
+                    panel.style.width="100%";
+                    panel.style.height=heights/num+"px";
+                    panel.style.transform='rotateY(180deg)';
+                    panel.style.background="url(img/3.jpg) no-repeat 0 "+-i*(heights/num)+"px";
+                }else if(j==4){
+                    panel.style.width="100%";
+                    panel.style.height=widths+"px";
+                    panel.style.transformOrigin="bottom";
+                    panel.style.transform="rotateX(90deg)";
+                    panel.style.top=-(widths-heights/num)+"px";
+                }else if(j==5){
+                    panel.style.width="100%";
+                    panel.style.height=heights/num+"px";
+                    panel.style.transform="translateZ("+widths+"px)";
+                    panel.style.background="url(img/1.jpg) no-repeat 0 "+-i*(heights/num)+"px";
+                }
+                box.appendChild(panel);
+            }
+            arr.push(box);
+            scene.appendChild(box);
+            container.appendChild(scene);
+        }
+
+        /*var init=0;
+        var t=setInterval(move,5000)
+        function move(){
+            init+=90;
+            for(var i=0;i<arr.length;i++){
+                arr[i].style.transform="rotateY("+init+"deg)";
+            }
+        }
+           setTimeout(function () {
+               window.onblur=function(){
+                   console.log('失去');
+                   clearInterval(t);
+               }
+               window.onfocus=function(){
+                   console.log('回来');
+                   t=setInterval(move,5000)
+               }
+           },0)*/
+
+        setInterval(dong,2000)
+
+        function dong (){
+
+            for(var x=0;x<arr.length;x++){
+                if(x<=5){
+                    arr[x].style.animation= "mymove "+x*0.8+"s linear ";
+                }else{
+                    arr[x].style.animation= "mymove "+(8-x*0.8)+"s linear ";
+                }
+
+            }
+        }
+
+
+    }
+</script>
+<body>
+<div class="container"></div>
+</body>
+</html>

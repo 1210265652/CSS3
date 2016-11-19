@@ -1,0 +1,25 @@
+字体图标
+图片显示尺寸在不同的终端显示不同  希望图片可以不失真
+矢量图 实时计算  不失真  表示不了太多的颜色信息
+xml  标签语言的鼻祖  跨平台 兼容各种操作系统的标签语言
+扩展：html  svg
+
+引入，应用字体图标：css3属性 @font-face
+@font-face{
+    font-family:"name";
+    src:url("");
+}
+利用类名去调用
+ @font-face {
+        font-family: "xingzuo";
+        src: url('font/iconfont.eot');
+        src: url('font/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('font/iconfont.woff') format('woff'),
+        url('font/iconfont.ttf') format('truetype'),
+        url('font/iconfont.svg#iconfont') format('svg');
+    }
+.me:after{
+        font-family: "xingzuo";
+        content: "\e679";
+    }
+
